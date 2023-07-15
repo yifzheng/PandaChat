@@ -105,6 +105,12 @@ body {
 				border: none;
 				cursor: pointer;
 			}
+			.form-error {
+				color: red;
+				font-size: 14px;
+				margin-top: 5px;
+				text-align: center;
+			}
 		}
 		p {
 			color: $light-gray;
@@ -174,7 +180,7 @@ body {
 						background-color: aliceblue;
 						border: none;
 						padding: 7px;
-						font-size: 10px;
+						font-size: 11px;
 						border-radius: 5px;
 						cursor: pointer;
 					}

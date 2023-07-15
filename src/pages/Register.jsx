@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
     const [ err, setErr ] = useState( false );
     const navigate = useNavigate();
+    // submit the form to create a user account and user object
     const handleSubmit = async ( e ) => {
         e.preventDefault();
         // destructure the event target data into set variables
@@ -49,10 +50,11 @@ const Register = () => {
                     getDownloadURL( uploadTask.snapshot.ref ).then( async ( downloadURL ) => {
                         console.log( 'File available at', downloadURL );
                         // update user profile with displayName and imaeURl
-                        await updateProfile( response.user, {
+                        await updateProfile( auth.currentUser, {
                             displayName,
-                            photoUrl: downloadURL,
+                            photoURL: downloadURL,
                         } )
+                        
                         console.log( "There is no error in update user" )
                         // create user object and store in database
                         await setDoc( doc( db, "users", userUID ), {
