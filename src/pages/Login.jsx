@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -12,7 +13,7 @@ const Login = () => {
                     <input type="password" name="user-password" id="user-password" placeholder="Password" />
                     <button>Sign In</button>
                 </form>
-                <p>Don&apost have an account? Register</p>
+                <p>Don&apost have an account? <Link to="/register">Register</Link></p>
             </div>
         </div>
     )
