@@ -54,30 +54,21 @@ const Register = () => {
                             photoUrl: downloadURL,
                         } )
                         console.log( "There is no error in update user" )
+                        // create user object and store in database
+                        await setDoc( doc( db, "users", userUID ), {
+                            uid: userUID,
+                            displayName,
+                            email,
+                            photoUrl: downloadURL,
+                        } )
+                        console.log( "There is no error in setDoc user" )
+                        // create userChats collection to store all the available chats for current user
+                        await setDoc( doc( db, "userChats", userUID ), {} )
+                        // once done, navigate to login page to login
                         navigate( '/home' ) // navigate to home page
                     } );
                 }
             );
-            /* 
-            // create user object and store in database
-            /* db.collection( "users" ).doc( userUID ).set( {
-                uid: userUID,
-                displayName,
-                email,
-                photoUrl: downloadURL,
-            } ).catch( err => console.error( err ) ) 
-            await setDoc( doc( db, "users", userUID ), {
-                uid: userUID,
-                displayName,
-                email,
-                photoUrl: downloadURL,
-            } )
-            console.log( "There is no error in setDoc user" )
-            // create userChats collection to store all the available chats for current user
-            await setDoc( doc( db, "userChats", userUID ), {} )
-            // once done, navigate to login page to login
-             */
-
         } catch ( error ) {
             setErr( true )
         }
