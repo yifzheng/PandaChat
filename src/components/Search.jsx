@@ -36,9 +36,9 @@ const Search = () => {
     // check whether the group(chats in firestore) exist, if not create
     const combinedUID = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
     try {
-      const response = await getDoc( doc( db, "chats", combinedUID ) )
-      if ( !response.exists() ) {
-        await setDoc( doc( db, "chats", combinedUID ), { messages: [] } ) // create empty document
+      const response = await getDoc( doc( db, "chats", combinedUID ) ) // get the document in the chats collection with combined UID as id
+      if ( !response.exists() ) { // if the document does not exist
+        await setDoc( doc( db, "chats", combinedUID ), { messages: [] } ) // create empty document in collection with combinedUID as id and create an empty array to store messages
 
         // create user chats for current user
         await updateDoc( doc( db, "userChats", currentUser.uid ), {

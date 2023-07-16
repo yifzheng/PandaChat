@@ -3,11 +3,6 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://yifzheng.github.io/PandaChat/",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/yifzheng/PandaChat.git"
-	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
