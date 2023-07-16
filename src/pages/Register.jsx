@@ -27,7 +27,6 @@ const Register = () => {
             const storageRef = ref( storage, userUID ); // get storage reference and set file filename to be user display name
             const uploadTask = uploadBytesResumable( storageRef, file ); // create an upload task
 
-            let url;
             // upload the file into storage
             uploadTask.on( 'state_changed', ( snapshot ) => {
                 const progress = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
@@ -48,22 +47,19 @@ const Register = () => {
                 // onsuccess get the downloadable url of the image and update user
                 () => {
                     getDownloadURL( uploadTask.snapshot.ref ).then( async ( downloadURL ) => {
-                        console.log( 'File available at', downloadURL );
                         // update user profile with displayName and imaeURl
                         await updateProfile( auth.currentUser, {
                             displayName,
                             photoURL: downloadURL,
                         } )
                         
-                        console.log( "There is no error in update user" )
                         // create user object and store in database
                         await setDoc( doc( db, "users", userUID ), {
                             uid: userUID,
                             displayName,
                             email,
-                            photoUrl: downloadURL,
+                            photoURL: downloadURL,
                         } )
-                        console.log( "There is no error in setDoc user" )
                         // create userChats collection to store all the available chats for current user
                         await setDoc( doc( db, "userChats", userUID ), {} )
                         // once done, navigate to login page to login

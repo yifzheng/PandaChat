@@ -1,33 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useRef } from 'react';
 import Message from './Message'
+import { ChatContext } from '../context/ChatContext';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Messages = () => {
-  const chatRef = useRef();
+  const [ messages, setMessages ] = useState( [] )
+  const { data } = useContext( ChatContext )
+
 
   useEffect( () => {
     // Scroll to the bottom when component mounts or whenever the content updates
-    scrollToBottom();
-
+    const unSub = onSnapshot( doc( db, "chats", data.chatId ), ( doc ) => {
+      doc.exists() && setMessages( doc.data().messages )
+    } )
     // cleanup
-    return () => { }
-  }, [] );
-
-  const scrollToBottom = () => {
-    if ( chatRef.current ) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    return () => {
+      unSub()
     }
-  };
+  }, [ data.chatId ] );
 
   return (
-    <div className='messages' ref={ chatRef }>
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
+    <div className='messages'>
+      { messages?.map( ( m ) => (
+        <Message message={ m } key={ m.id } />
+      ) ) }
     </div>
   )
 }
