@@ -32,7 +32,7 @@ const Login = () => {
                     <button>Sign In</button>
                     { err && <span className="form-error">Something went wrong</span> }
                 </form>
-                <p>Don&apost have an account? <Link to="/register">Register</Link></p>
+                <p>Don't have an account? <Link to="/register">Register</Link></p>
             </div>
         </div>
     )

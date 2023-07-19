@@ -124,8 +124,16 @@ body {
 	background-color: $background-color;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	footer {
+		color: white;
+		position: absolute;
+		bottom: 0;
+		padding: 10px;
+	}
 
 	.homePageContainer {
 		border: 1px solid white;

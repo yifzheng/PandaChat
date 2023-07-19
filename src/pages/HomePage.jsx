@@ -10,6 +10,7 @@ const HomePage = () => {
             <SideBar />
             <Chat />
         </div>
+        <footer>&copy; YifZheng Studio</footer>
     </div>
   )
 }
