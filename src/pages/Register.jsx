@@ -91,6 +91,7 @@ const Register = () => {
                 </form>
                 <p>Have an account? <Link to="/login">Login</Link></p>
             </div>
+            <footer>&copy; YifZheng Studio</footer>
         </div>
     )
 }
